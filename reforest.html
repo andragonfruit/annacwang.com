@@ -481,7 +481,7 @@
       overflow: hidden;
       position: relative;
     }
-    .cs-img.sol-img { margin-top: 1.75rem; }
+    .cs-img.sol-img { margin-top: 1.75rem; margin-bottom: 4rem; }
     .cs-hero-preview {
       width: 100%;
       aspect-ratio: 6900 / 4320;
@@ -587,6 +587,7 @@
       padding: 0.25rem 0;
     }
     .cs-carousel-nav button:hover { color: var(--accent-deep); }
+    .cs-carousel-nav button:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
     .cs-carousel-count { font-size: 0.78rem; color: var(--ink-faint); }
     .cs-carousel-note {
       font-size: 0.82rem;
@@ -690,7 +691,7 @@
       <h1 class="cs-hero-title">Designing the admin and donor experience for <em>Reforest Trees</em>, from field measurements to donor transparency.</h1>
       <p class="cs-hero-sub">Two platforms on a shared data model: field staff manage every tree's lifecycle, and donors trace exactly which verified trees their money supports.</p>
 
-      <div class="cs-hero-preview"><img src="images/case-studies/reforest/reforest-hero.png" alt="Reforest Trees donor dashboard and tree update form"></div>
+      <div class="cs-hero-preview"><img src="images/case-studies/reforest/hero.png" alt="Reforest Trees donor dashboard and tree update form"></div>
 
       <div class="cs-meta">
         <div>
@@ -736,8 +737,7 @@
 
         <h2 class="cs-headline">Donors invest millions in carbon offsets — but rarely know if their trees survive.</h2>
         <p class="cs-body">Every year, corporate and individual donors fund global offsets, yet a trust barrier remains: once money is sent, donors can't tell if their trees lived, or if funds were double-counted. We designed the platform that closes that gap.</p>
-        <div class="cs-img"><span>Hero mockup — admin &amp; donor dashboards</span></div>
-        <p class="cs-caption"><strong>Above</strong> The two platforms: the admin tree-management dashboard and the donor impact view.</p>
+        <div class="cs-img"><img src="images/case-studies/reforest/overview.png" alt="Reforest Trees admin and donor dashboards" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       </section>
 
       <!-- PROBLEM -->
@@ -754,9 +754,6 @@
 
         <h3 class="cs-sub"><span class="tick">✦</span>The traceability gap: Donations weren't linked to trees.</h3>
         <p class="cs-body">Funds were decoupled from physical trees. Donors couldn't tell if their money backed a nursery seedling or an established tree, which risked double-counting.</p>
-
-        <div class="cs-img alt-a"><span>Diagram — fragmented data landscape</span></div>
-        <p class="cs-caption"><strong>Above</strong> Mapping where tree data lived before: four external tools and zero shared source of truth.</p>
 
         <h3 class="cs-sub">Our Solution</h3>
         <div class="cs-ovcards">
@@ -783,8 +780,7 @@
         <h3 class="cs-sub"><span class="tick">✦</span>Goal #2: Make blockchain-backed proof readable to non-experts.</h3>
         <p class="cs-body">Not every field technician or donor knows blockchain — yet both rely on the same tree-info view. That shared view had to express the underlying rigor simply: here's the tree, here's how it's growing, here's the proof it's real.</p>
 
-        <div class="cs-img alt-b"><span>User flows — admin vs. donor journeys</span></div>
-        <p class="cs-caption"><strong>Above</strong> Two journeys, one data model: admins feed the tree lifecycle; donors read it back as impact.</p>
+        <div class="cs-img alt-b"><img src="images/case-studies/reforest/research-goal.png" alt="Reforest Trees tree view, editing and viewing states" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       </section>
 
       <!-- PROCESS -->
@@ -813,10 +809,8 @@
 
         <div class="cs-carousel" id="carousel">
           <div class="cs-carousel-frame">
-            <div class="cs-carousel-slide active"><span>v1 — early wireframes</span></div>
-            <div class="cs-carousel-slide"><span>v2 — tree table &amp; filters</span></div>
-            <div class="cs-carousel-slide"><span>v3 — update form revisions</span></div>
-            <div class="cs-carousel-slide"><span>v4 — final hi-fi</span></div>
+            <div class="cs-carousel-slide active"><img src="images/case-studies/reforest/design-system.png" alt="Reforest Trees design system" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="cs-carousel-slide"><img src="images/case-studies/reforest/components.png" alt="Reforest Trees components" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <div class="cs-carousel-bar">
             <div class="cs-carousel-nav">
@@ -825,7 +819,6 @@
             </div>
             <span class="cs-carousel-count" id="car-count">1 of 4</span>
           </div>
-          <p class="cs-carousel-note" id="car-note"></p>
         </div>
       </section>
 
@@ -836,18 +829,15 @@
 
         <h3 class="cs-sub"><span class="tick">✦</span>Admin Dashboard: Projects and trees, finally in one place.</h3>
         <p class="cs-body">Admins create projects with species-specific parameters, then search, filter, and sort every tree by status, survival, or measurements. Initial data syncs from OFP; all updates live here.</p>
-        <div class="cs-img sol-img"><span>Final screens — project &amp; tree management</span></div>
-        <p class="cs-imglabel"><strong>Projects</strong> Search, filter, and sort every tree across initiatives.</p>
+        <div class="cs-img sol-img"><img src="images/case-studies/reforest/admin-dashboard.png" alt="Admin dashboard" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
 
         <h3 class="cs-sub"><span class="tick">✦</span>Tree Updates: Structured rigor, designed for the field.</h3>
         <p class="cs-body">Updates capture measurements, photos, incidents, and vigor, with biomass and CO₂e <strong>auto-calculated from allometric equations</strong> — overridable only with written justification. Grouped into steps that hold up on a field tablet.</p>
-        <div class="cs-img alt-a sol-img"><span>Final screens — tree update flow</span></div>
-        <p class="cs-imglabel"><strong>Update</strong> One flow for measurements, photos, and auto-calculated impact.</p>
+        <div class="cs-img alt-a sol-img"><img src="images/case-studies/reforest/forms.png" alt="Tree update form" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
 
         <h3 class="cs-sub"><span class="tick">✦</span>Donor Dashboard: Impact you can actually point to.</h3>
         <p class="cs-body">Donors give in preset amounts and watch allocation status progress. Once consolidated, they open the verified trees they funded — planting data, growth, and contribution, all backed by quarterly on-chain anchoring.</p>
-        <div class="cs-img alt-b sol-img"><span>Final screens — donor dashboard &amp; tree view</span></div>
-        <p class="cs-imglabel"><strong>Donor view</strong> Browse projects, track allocation, open the verified trees you funded.</p>
+        <div class="cs-img alt-b sol-img"><img src="images/case-studies/reforest/donor-dashboard.png" alt="Donor dashboard" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       </section>
 
       <!-- CONCLUSION -->
@@ -1018,19 +1008,21 @@
     // ── Iteration carousel ──
     const slides = document.querySelectorAll('.cs-carousel-slide');
     const notes = [
-      '<em>v1:</em> Early wireframes putting projects and trees in one combined view. Too dense — admins managing hundreds of trees needed the project layer and tree layer clearly separated.',
-      '<em>v2:</em> A dedicated tree table with search, sort, and filters (status, survival, incidents, vigor). Much closer to how field staff actually look for trees.',
-      '<em>v3:</em> Reworking the tree update form into grouped steps — identity, measurements, evidence, observations — so the verification-grade fields stay manageable on mobile.',
-      '<em>v4:</em> Final high-fidelity screens: consistent status language across admin and donor views, with the allocation states surfaced everywhere funds appear.'
+      '<em>Design system:</em> A condensed version of the full design system.',
+      '<em>Components:</em> A few of the many components.'
     ];
     let cur = 0;
     const countEl = document.getElementById('car-count');
     const noteEl = document.getElementById('car-note');
     function showSlide(i) {
-      cur = (i + slides.length) % slides.length;
+      cur = Math.max(0, Math.min(i, slides.length - 1));
       slides.forEach((s, idx) => s.classList.toggle('active', idx === cur));
       countEl.textContent = (cur + 1) + ' of ' + slides.length;
-      noteEl.innerHTML = notes[cur];
+      if (noteEl) noteEl.innerHTML = notes[cur];
+      const prevBtn = document.getElementById('car-prev');
+      const nextBtn = document.getElementById('car-next');
+      prevBtn.disabled = cur === 0;
+      nextBtn.disabled = cur === slides.length - 1;
     }
     document.getElementById('car-prev').addEventListener('click', () => showSlide(cur - 1));
     document.getElementById('car-next').addEventListener('click', () => showSlide(cur + 1));
