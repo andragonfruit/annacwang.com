@@ -191,7 +191,7 @@
     .nav-name, .section-label, .hero-scrollhint { }
 
     .section-label {
-      font-size: 1.21rem;
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--accent);
@@ -204,22 +204,13 @@
     #work   .section-label { color: var(--ink); }
     #info   .section-label { color: var(--ink); }
 
-    /* Headers and About content share the same centered column as the work grid */
-    #work .section-label,
-    #info .section-label,
-    .info-layout {
-      max-width: 1250px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
     .nav-links { display: flex; gap: 2.5rem; list-style: none; flex-wrap: nowrap; }
     .nav-links a { font-size: 1rem; color: var(--ink-faint); transition: color 0.2s; white-space: nowrap; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
     .nav-links a:hover { color: var(--ink); }
 
     /* ── HERO ── */
     .hero {
-      padding: 14rem 4rem 10rem;
+      padding: 14rem 5rem 10rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -227,7 +218,7 @@
       position: relative;
     }
 
-    .hero-top { padding-bottom: 0; position: relative; z-index: 2; }
+    .hero-top { padding-bottom: 0; }
 
     .hero-name {
       font-size: clamp(1.6rem, 3vw, 2.4rem);
@@ -393,62 +384,51 @@
     }
 
     /* ── RULE ── */
-    hr.rule { border: none; border-top: 1px solid var(--border); margin: 0 4rem; }
+    hr.rule { border: none; border-top: 1px solid var(--border); margin: 0 5rem; }
 
     /* ── SECTION SHELL ── */
-    .section-shell { padding: 4rem 4rem; }
+    .section-shell { padding: 4rem 5rem; }
 
     /* ── WORK — TWO COL IMAGE CARDS ── */
-    #work { padding: 0 4rem 4rem; }
+    #work { padding: 0 5rem 4rem; }
 
     .work-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       gap: 2rem;
-      max-width: 1250px;
-      margin-inline: auto;
-      align-items: start;
+      align-items: flex-start;
     }
 
-    /* Columns dissolve into the grid so rows share heights and stay aligned */
     .work-col {
-      display: contents;
-    }
-    .work-grid > .work-col:first-child > * { grid-column: 1; }
-    .work-grid > .work-col:last-child > * { grid-column: 2; }
-    .work-grid > .work-col:first-child > :nth-child(1) { grid-row: 1; }
-    .work-grid > .work-col:first-child > :nth-child(2) { grid-row: 2; }
-    .work-grid > .work-col:first-child > :nth-child(3) { grid-row: 3; }
-    .work-grid > .work-col:last-child > :nth-child(1) { grid-row: 1; }
-    .work-grid > .work-col:last-child > :nth-child(2) { grid-row: 2; }
-
-    .work-card.card-a { background: transparent; }
-    .work-card.card-b { background: transparent; }
-    .work-card.card-c { background: transparent; }
-    .work-card.card-d { background: transparent; }
-    .work-card.card-e { background: transparent; }
-    .work-card:hover { box-shadow: none; }
-
-    .work-col-half { overflow: visible; }
-
-    /* Lift pop — on image only now */
-    .work-card {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      position: relative;
-      background: transparent;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--ink);
-      border-radius: 0;
-      overflow: visible;
-      transition: color 0.2s ease;
+      gap: 2rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .work-card.card-a { background: #d8e2ee; }
+    .work-card.card-b { background: #e8dce0; }
+    .work-card.card-c { background: #ede8cc; }
+    .work-card.card-d { background: #dce8dc; }
+    .work-card.card-e { background: #dce8dc; }
+    .work-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.11); }
+
+    .work-col, .work-col-half { overflow: visible; }
+
+    /* Lift pop — translateY doesn't cause subpixel blur unlike scale */
+    .work-card {
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
       z-index: 0;
+      position: relative;
     }
     .work-card:hover {
+      transform: translateY(-4px);
       z-index: 10;
+      box-shadow: 0 20px 56px rgba(0,0,0,0.13);
     }
+
+
+
     .work-card.card-a .work-card-img { background: linear-gradient(135deg, #c4d4e8, #b4c4d8); }
     .work-card.card-b .work-card-img { background: linear-gradient(135deg, #ddc8ce, #ceb8be); }
     .work-card.card-c .work-card-img { background: linear-gradient(135deg, #d4c87a, #c4b860); }
@@ -457,20 +437,17 @@
 
     .work-card-img {
       width: 100%;
-      aspect-ratio: 3 / 2;
-      height: auto;
+      height: 260px;
       background: linear-gradient(135deg, #e8e5dc 0%, #ccc9be 100%);
       overflow: hidden;
       position: relative;
-      border-radius: 16px;
+      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
-    .work-card:hover .work-card-img {
-      box-shadow: 0 20px 56px rgba(0,0,0,0.13);
-    }
+
+    .work-card { display: block; width: 100%; position: relative; background: #eeecea; cursor: pointer; text-decoration: none; color: var(--ink); border-radius: 16px; overflow: hidden; transition: box-shadow 0.3s ease; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-style: flat; }
 
     .work-card-img img {
       width: 100%; height: 100%;
@@ -524,28 +501,31 @@
     }
 
     .work-card-foot {
-      padding: 0.8rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.8rem 1.2rem 0;
+      gap: 1rem;
     }
 
     .work-card-left {}
 
     .work-card-title {
-      font-size: 0.94rem;
+      font-size: 0.85rem;
       font-weight: 400;
       letter-spacing: -0.01em;
       line-height: 1.5;
-      margin-bottom: 0;
+      margin-bottom: -0.2rem;
       color: var(--ink-muted);
     }
 
     .work-card-tag {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-family: var(--sans);
       font-weight: 500;
       letter-spacing: 0.01em;
-      padding: 0 0 0.9rem;
-      margin-top: 0.3rem;
+      padding: 0 1.2rem 0.9rem;
       line-height: 1.7;
       color: var(--ink-faint);
     }
@@ -563,7 +543,11 @@
 
     /* ── HALF CARDS (YF + COUNTRY stacked) ── */
     .work-col-half {
-      display: contents; /* children go into grid directly */
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      flex: 1;
+      min-width: 0;
     }
 
     .work-card-half {
@@ -572,14 +556,13 @@
 
     .work-card-inprogress {
       position: relative;
+      border-radius: 16px;
+      overflow: hidden;
     }
 
     .work-card-inprogress-overlay {
       position: absolute;
-      top: 0; left: 0; right: 0;
-      aspect-ratio: 3 / 2;
-      height: auto;
-      border-radius: 16px;
+      inset: 0;
       background: rgba(247,246,242,0.72);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
@@ -589,7 +572,6 @@
       opacity: 0;
       transition: opacity 0.25s ease;
       z-index: 10;
-      pointer-events: none;
     }
 
     .work-card-inprogress-overlay span {
@@ -599,9 +581,21 @@
       letter-spacing: 0.04em;
     }
 
-    .work-card-inprogress:hover .work-card-inprogress-overlay {
+    .work-card-inprogress:hover .work-card-inprogress-overlay,
+    .work-card-inprogress:active .work-card-inprogress-overlay {
       opacity: 1;
     }
+      font-size: 1.1rem;
+      color: var(--ink-faint);
+      transition: transform 0.25s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .work-card:hover .work-card-arrow { transform: translate(3px,-3px); }
+    .work-card.card-a:hover .work-card-arrow { color: #6a8aaa; }
+    .work-card.card-b:hover .work-card-arrow { color: #9a6a72; }
+    .work-card.card-c:hover .work-card-arrow { color: #8a7a20; }
+    .work-card.card-d:hover .work-card-arrow { color: #5a8a5a; }
+    .work-card.card-e:hover .work-card-arrow { color: #5a8a5a; }
 
     /* ── ABOUT ── */
     #about {
@@ -677,7 +671,7 @@
     .about-link:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── EXP ── */
-    #exp { padding: 4rem 4rem; }
+    #exp { padding: 4rem 5rem; }
 
     .exp-list { display: flex; flex-direction: column; }
 
@@ -714,13 +708,14 @@
     }
 
 
+    .work-card-arrow i, .work-card-arrow svg {
       width: 16px; height: 16px;
       stroke: currentColor;
     }
 
     /* lucide base */
     [data-lucide] { display: inline-flex; }
-    #info { padding: 0 4rem 6rem; }
+    #info { padding: 0 5rem 6rem; }
 
     .info-grid { display: none; }
     .info-top-row { display: none; }
@@ -745,15 +740,10 @@
     .info-right-blocks {
       display: flex;
       flex-direction: column;
-      /* Push down so "Experience" baseline aligns with "Hi, I'm Anna!" first line baseline.
-         Bio: 0.92rem font, 1.9 line-height → half leading above first line ≈ (0.92*1.9 - 0.92)/2 = 0.414rem
-         Label: 0.78rem font, line-height ~1.4 → half leading above ≈ (0.78*1.4 - 0.78)/2 = 0.156rem
-         Offset = 0.414 - 0.156 ≈ 0.26rem */
-      padding-top: 0.26rem;
     }
 
     .info-bio p {
-      font-size: 1.01rem;
+      font-size: 0.92rem;
       color: var(--ink-muted);
       line-height: 1.9;
       margin-bottom: 1.1rem;
@@ -774,7 +764,7 @@
     .info-block {}
 
     .info-block-label {
-      font-size: 0.86rem;
+      font-size: 0.78rem;
       font-weight: 400;
       color: var(--ink-faint);
       margin-bottom: 1rem;
@@ -789,7 +779,7 @@
     }
 
     .info-list li {
-      font-size: 0.97rem;
+      font-size: 0.88rem;
       color: var(--ink);
       display: flex;
       justify-content: space-between;
@@ -815,19 +805,18 @@
     .info-list li:last-child { border-bottom: none; }
 
     .info-list li span {
-      font-size: 0.83rem;
+      font-size: 0.75rem;
       color: var(--ink-faint);
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .li-date {
-      font-size: 0.83rem;
+      font-size: 0.75rem;
       color: var(--ink-faint);
       white-space: nowrap;
       flex-shrink: 0;
       min-width: 4.5rem;
-      text-align: right;
     }
 
     .info-links {
@@ -855,7 +844,7 @@
 
     /* ── FOOTER ── */
     footer {
-      padding: 1.75rem 4rem;
+      padding: 1.75rem 5rem;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -880,43 +869,31 @@
     .reveal.visible { opacity:1; transform:translateY(0); }
 
     @media (min-width: 1600px) {
-      .top-nav { padding-left: 4rem; padding-right: 4rem; }
-      .hero { padding-left: 8rem; padding-right: 8rem; }
-      hr.rule { margin: 0 8rem; }
-      #work, #info { padding-left: 8rem; padding-right: 8rem; }
-      footer { padding-left: 8rem; padding-right: 8rem; }
+      .top-nav { padding-left: 5rem; padding-right: 5rem; }
+      .hero { padding-left: 10rem; padding-right: 10rem; }
+      hr.rule { margin: 0 10rem; }
+      #work, #info { padding-left: 10rem; padding-right: 10rem; }
+      footer { padding-left: 10rem; padding-right: 10rem; }
     }
 
     @media (min-width: 2000px) {
-      .top-nav { padding-left: 6.4rem; padding-right: 6.4rem; }
-      .hero { padding-left: 12.8rem; padding-right: 12.8rem; }
-      hr.rule { margin: 0 12.8rem; }
-      #work, #info { padding-left: 12.8rem; padding-right: 12.8rem; }
-      footer { padding-left: 12.8rem; padding-right: 12.8rem; }
+      .top-nav { padding-left: 8rem; padding-right: 8rem; }
+      .hero { padding-left: 16rem; padding-right: 16rem; }
+      hr.rule { margin: 0 16rem; }
+      #work, #info { padding-left: 16rem; padding-right: 16rem; }
+      footer { padding-left: 16rem; padding-right: 16rem; }
     }
 
     /* ── WIDE — extra outer stars ── */
-    .hero-deco-wide { display: none; }
     @media (min-width: 1400px) {
       .hero-deco-wide { display: inline-block; }
     }
-    .hero-deco-ultra { display: none; }
-    @media (min-width: 1900px) {
-      .hero-deco-ultra { display: inline-block; }
-    }
-    /* light mode: thinner edges; these reappear in dark mode */
-    .hero-deco-darkonly { display: none; }
-    .hero.dark-mode .hero-deco-darkonly { display: inline-block; }
-    /* narrow windows: wrapped tagline grows into the low-center zone */
-    @media (max-width: 1000px) {
-      .hero-deco-center { display: none; }
-    }
+    .hero-deco-wide { display: none; }
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .work-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .work-grid > .work-col > * { grid-column: auto !important; grid-row: auto !important; }
-      .work-grid .work-card, .work-grid .work-card-inprogress { width: 100%; }
+      .work-col { gap: 1rem; }
+      .work-grid { flex-direction: column; }
       .hero { padding: 9rem 1.5rem 6rem; }
       .hero-deco { display: none; }
       /* show a handful of corner stars that can't overlap centered text */
@@ -967,73 +944,39 @@
     <span class="hero-deco hero-deco-mobile" data-star data-ci="4" style="top:22%;right:6%;font-size:0.65rem;animation-delay:0.75s;">*</span>
     <span class="hero-deco hero-deco-mobile" data-star data-ci="5" style="top:68%;right:4%;font-size:0.9rem;animation-delay:0.55s;">✦</span>
     <!-- stars matched to screenshot -->
-    <span class="hero-deco hero-deco-darkonly" data-star data-ci="0" style="top:13%;left:max(1.5%, calc(50% - 483px));font-size:0.7rem;animation-delay:0.0s;">˖</span>
+    <span class="hero-deco" data-star data-ci="0" style="top:13%;left:calc(50% - 483px);font-size:0.7rem;animation-delay:0.0s;">˖</span>
     <span class="hero-deco" data-star data-ci="1" style="top:11%;left:calc(50% - 253px);font-size:0.75rem;animation-delay:0.17s;">÷</span>
     <span class="hero-deco" data-star data-ci="2" style="top:11%;left:calc(50% - 211px);font-size:0.65rem;animation-delay:0.34s;">*</span>
     <span class="hero-deco" data-star data-ci="3" style="top:12%;left:calc(50% - 105px);font-size:0.6rem;animation-delay:0.51s;">·</span>
     <span class="hero-deco" data-star data-ci="4" style="top:11%;left:calc(50% + 165px);font-size:0.65rem;animation-delay:0.68s;">*</span>
     <span class="hero-deco" data-star data-ci="5" style="top:13%;left:calc(50% + 300px);font-size:0.65rem;animation-delay:0.85s;">°.</span>
-    <span class="hero-deco" data-star data-ci="6" style="top:13%;left:min(calc(100% - 2.2rem), calc(50% + 470px));font-size:0.6rem;animation-delay:1.02s;">°.</span>
-    <span class="hero-deco" data-star data-ci="7" style="top:22%;left:max(1.5%, calc(50% - 370px));font-size:0.55rem;animation-delay:1.19s;">·</span>
-    <span class="hero-deco" data-star data-ci="0" style="top:24%;left:min(calc(100% - 2.2rem), calc(50% + 420px));font-size:0.6rem;animation-delay:0.16s;">*</span>
-    <span class="hero-deco hero-deco-darkonly" data-star data-ci="1" style="top:35%;left:max(1.5%, calc(50% - 580px));font-size:0.75rem;animation-delay:0.33s;">+</span>
-    <span class="hero-deco" data-star data-ci="2" style="top:29%;left:max(1.5%, calc(50% - 440px));font-size:0.75rem;animation-delay:0.5s;">+</span>
+    <span class="hero-deco" data-star data-ci="6" style="top:13%;left:calc(50% + 470px);font-size:0.6rem;animation-delay:1.02s;">°.</span>
+    <span class="hero-deco" data-star data-ci="7" style="top:20%;left:calc(50% + 25px);font-size:0.55rem;animation-delay:1.19s;">·</span>
+    <span class="hero-deco" data-star data-ci="0" style="top:19%;left:calc(50% + 209px);font-size:0.6rem;animation-delay:0.16s;">*</span>
+    <span class="hero-deco" data-star data-ci="1" style="top:39%;left:calc(50% - 609px);font-size:0.75rem;animation-delay:0.33s;">+</span>
+    <span class="hero-deco" data-star data-ci="2" style="top:41%;left:calc(50% - 467px);font-size:0.75rem;animation-delay:0.5s;">+</span>
     <span class="hero-deco" data-star data-ci="3" style="top:31%;left:calc(50% - 285px);font-size:0.9rem;animation-delay:0.67s;">⊹</span>
-    <span class="hero-deco" data-star data-ci="4" style="top:26%;left:min(calc(100% - 2.2rem), calc(50% + 343px));font-size:1.0rem;animation-delay:0.84s;">✦</span>
-    <span class="hero-deco" data-star data-ci="5" style="top:43%;left:min(calc(100% - 2.2rem), calc(50% + 490px));font-size:0.7rem;animation-delay:1.01s;">÷</span>
-    <span class="hero-deco" data-star data-ci="6" style="top:53%;left:max(1.5%, calc(50% - 455px));font-size:0.65rem;animation-delay:1.18s;">*</span>
-    <span class="hero-deco" data-star data-ci="7" style="top:67%;left:max(1.5%, calc(50% - 390px));font-size:0.85rem;animation-delay:0.15s;">⊹</span>
-    <span class="hero-deco" data-star data-ci="0" style="top:57%;left:min(calc(100% - 2.2rem), calc(50% + 340px));font-size:0.7rem;animation-delay:0.32s;">÷</span>
-    <span class="hero-deco hero-deco-center" data-star data-ci="1" style="top:79%;left:calc(50% - 168px);font-size:0.65rem;animation-delay:0.49s;">°.</span>
-    <span class="hero-deco hero-deco-center" data-star data-ci="2" style="top:84%;left:calc(50% + 15px);font-size:0.55rem;animation-delay:0.66s;">·</span>
-    <span class="hero-deco hero-deco-center" data-star data-ci="3" style="top:71%;left:calc(50% + 261px);font-size:0.7rem;animation-delay:0.83s;">*</span>
-    <span class="hero-deco" data-star data-ci="4" style="top:79%;left:min(calc(100% - 2.2rem), calc(50% + 430px));font-size:0.65rem;animation-delay:1.0s;">*</span>
-    <span class="hero-deco" data-star data-ci="5" style="top:91%;left:max(1.5%, calc(50% - 380px));font-size:0.65rem;animation-delay:1.17s;">+</span>
-    <span class="hero-deco" data-star data-ci="6" style="top:91%;left:calc(50% + 290px);font-size:0.8rem;animation-delay:0.14s;">✦</span>
-    <span class="hero-deco hero-deco-darkonly" data-star data-ci="7" style="top:78%;left:min(calc(100% - 2.2rem), calc(50% + 530px));font-size:1.0rem;animation-delay:0.31s;">⊹</span>
-    <!-- fill blank spots -->
-    <span class="hero-deco" data-star data-ci="2" style="top:20%;left:calc(50% - 130px);font-size:0.6rem;animation-delay:0.42s;">⋆</span>
-    <span class="hero-deco" data-star data-ci="3" style="top:38%;left:calc(50% + 210px);font-size:0.55rem;animation-delay:0.77s;">·</span>
-    <!-- extra stars filling visible blank zones -->
-    <span class="hero-deco" data-star data-ci="5" style="top:27%;left:calc(50% + 130px);font-size:0.55rem;animation-delay:0.71s;">·</span>
-    <!-- near-center accents -->
-    <span class="hero-deco" data-star data-ci="4" style="top:30%;left:calc(50% + 70px);font-size:0.6rem;animation-delay:0.48s;">·</span>
-    <span class="hero-deco hero-deco-center" data-star data-ci="1" style="top:77%;left:calc(50% - 55px);font-size:0.65rem;animation-delay:0.82s;">˖</span>
-    <!-- light-mode flank fillers: the vertical bands beside the text -->
-    <span class="hero-deco" data-star data-ci="5" style="top:46%;left:calc(50% - 320px);font-size:0.8rem;animation-delay:0.38s;">⊹</span>
-    <span class="hero-deco" data-star data-ci="0" style="top:64%;left:calc(50% - 302px);font-size:0.65rem;animation-delay:0.72s;">˖</span>
-    <span class="hero-deco" data-star data-ci="7" style="top:44%;left:calc(50% + 312px);font-size:0.7rem;animation-delay:0.52s;">✦</span>
-    <span class="hero-deco" data-star data-ci="3" style="top:66%;left:calc(50% + 328px);font-size:0.75rem;animation-delay:0.16s;">⋆</span>
-    <!-- percentage-anchored fillers: visible at every width -->
-    <span class="hero-deco" data-star data-ci="1" style="top:24%;left:13%;font-size:0.75rem;animation-delay:0.28s;">⊹</span>
-    <span class="hero-deco" data-star data-ci="4" style="top:58%;left:9%;font-size:0.7rem;animation-delay:0.62s;">✦</span>
-    <span class="hero-deco" data-star data-ci="6" style="top:36%;left:88%;font-size:0.8rem;animation-delay:0.44s;">˖</span>
-    <span class="hero-deco" data-star data-ci="2" style="top:66%;left:91%;font-size:0.65rem;animation-delay:0.18s;">⋆</span>
-    <!-- wide-screen mid band: fills the gap between ±530 and ±700 -->
-    <span class="hero-deco hero-deco-wide" data-star data-ci="3" style="top:20%;left:max(1.5%, calc(50% - 620px));font-size:0.7rem;animation-delay:0.25s;">˖</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="0" style="top:48%;left:max(1.5%, calc(50% - 640px));font-size:0.85rem;animation-delay:0.65s;">⊹</span>
-    <span class="hero-deco hero-deco-wide hero-deco-darkonly" data-star data-ci="7" style="top:77%;left:max(1.5%, calc(50% - 610px));font-size:0.65rem;animation-delay:0.45s;">*</span>
-    <span class="hero-deco hero-deco-wide hero-deco-darkonly" data-star data-ci="5" style="top:28%;left:min(calc(100% - 2.2rem), calc(50% + 600px));font-size:0.75rem;animation-delay:0.8s;">✦</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="2" style="top:58%;left:min(calc(100% - 2.2rem), calc(50% + 630px));font-size:0.6rem;animation-delay:0.35s;">°.</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="6" style="top:84%;left:min(calc(100% - 2.2rem), calc(50% + 615px));font-size:0.8rem;animation-delay:0.55s;">⋆</span>
-    <!-- ultrawide ring (1900px+) -->
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="1" style="top:14%;left:max(1.5%, calc(50% - 900px));font-size:0.8rem;animation-delay:0.2s;">✦</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="4" style="top:42%;left:max(1.5%, calc(50% - 930px));font-size:0.7rem;animation-delay:0.6s;">+</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="6" style="top:70%;left:max(1.5%, calc(50% - 890px));font-size:0.9rem;animation-delay:0.4s;">⊹</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="0" style="top:90%;left:max(1.5%, calc(50% - 920px));font-size:0.65rem;animation-delay:0.85s;">˖</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="3" style="top:18%;left:min(calc(100% - 2.2rem), calc(50% + 910px));font-size:0.75rem;animation-delay:0.5s;">*</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="5" style="top:46%;left:min(calc(100% - 2.2rem), calc(50% + 880px));font-size:0.85rem;animation-delay:0.3s;">✦</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="2" style="top:74%;left:min(calc(100% - 2.2rem), calc(50% + 925px));font-size:0.6rem;animation-delay:0.7s;">°.</span>
-    <span class="hero-deco hero-deco-ultra" data-star data-ci="7" style="top:92%;left:min(calc(100% - 2.2rem), calc(50% + 895px));font-size:0.7rem;animation-delay:0.1s;">⋆</span>
+    <span class="hero-deco" data-star data-ci="4" style="top:33%;left:calc(50% + 343px);font-size:1.0rem;animation-delay:0.84s;">✦</span>
+    <span class="hero-deco" data-star data-ci="5" style="top:39%;left:calc(50% + 565px);font-size:0.7rem;animation-delay:1.01s;">÷</span>
+    <span class="hero-deco" data-star data-ci="6" style="top:56%;left:calc(50% - 425px);font-size:0.65rem;animation-delay:1.18s;">*</span>
+    <span class="hero-deco" data-star data-ci="7" style="top:70%;left:calc(50% - 367px);font-size:0.85rem;animation-delay:0.15s;">⊹</span>
+    <span class="hero-deco" data-star data-ci="0" style="top:60%;left:calc(50% + 360px);font-size:0.7rem;animation-delay:0.32s;">÷</span>
+    <span class="hero-deco" data-star data-ci="1" style="top:81%;left:calc(50% - 168px);font-size:0.65rem;animation-delay:0.49s;">°.</span>
+    <span class="hero-deco" data-star data-ci="2" style="top:86%;left:calc(50% + 15px);font-size:0.55rem;animation-delay:0.66s;">·</span>
+    <span class="hero-deco" data-star data-ci="3" style="top:73%;left:calc(50% + 261px);font-size:0.7rem;animation-delay:0.83s;">*</span>
+    <span class="hero-deco" data-star data-ci="4" style="top:81%;left:calc(50% + 346px);font-size:0.65rem;animation-delay:1.0s;">*</span>
+    <span class="hero-deco" data-star data-ci="5" style="top:92%;left:calc(50% - 400px);font-size:0.65rem;animation-delay:1.17s;">+</span>
+    <span class="hero-deco" data-star data-ci="6" style="top:92%;left:calc(50% + 340px);font-size:0.8rem;animation-delay:0.14s;">✦</span>
+    <span class="hero-deco" data-star data-ci="7" style="top:81%;left:calc(50% + 533px);font-size:1.0rem;animation-delay:0.31s;">⊹</span>
     <!-- wide-screen extras -->
-    <span class="hero-deco hero-deco-wide hero-deco-darkonly" data-star data-ci="2" style="top:10%;left:max(1.5%, calc(50% - 750px));font-size:0.9rem;animation-delay:0.3s;">*</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="5" style="top:38%;left:max(1.5%, calc(50% - 770px));font-size:0.75rem;animation-delay:0.7s;">✦</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="1" style="top:64%;left:max(1.5%, calc(50% - 750px));font-size:0.8rem;animation-delay:0.15s;">˖</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="6" style="top:85%;left:max(1.5%, calc(50% - 730px));font-size:0.65rem;animation-delay:0.9s;">⋆</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="4" style="top:16%;left:min(calc(100% - 2.2rem), calc(50% + 710px));font-size:0.85rem;animation-delay:0.5s;">⊹</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="0" style="top:50%;left:min(calc(100% - 2.2rem), calc(50% + 740px));font-size:0.7rem;animation-delay:1.0s;">+</span>
-    <span class="hero-deco hero-deco-wide hero-deco-darkonly" data-star data-ci="3" style="top:72%;left:min(calc(100% - 2.2rem), calc(50% + 720px));font-size:0.65rem;animation-delay:0.4s;">*</span>
-    <span class="hero-deco hero-deco-wide" data-star data-ci="7" style="top:90%;left:min(calc(100% - 2.2rem), calc(50% + 700px));font-size:0.7rem;animation-delay:0.6s;">°.</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="2" style="top:10%;left:calc(50% - 750px);font-size:0.9rem;animation-delay:0.3s;">*</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="5" style="top:38%;left:calc(50% - 770px);font-size:0.75rem;animation-delay:0.7s;">✦</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="1" style="top:64%;left:calc(50% - 750px);font-size:0.8rem;animation-delay:0.15s;">˖</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="6" style="top:85%;left:calc(50% - 730px);font-size:0.65rem;animation-delay:0.9s;">⋆</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="4" style="top:16%;left:calc(50% + 710px);font-size:0.85rem;animation-delay:0.5s;">⊹</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="0" style="top:50%;left:calc(50% + 740px);font-size:0.7rem;animation-delay:1.0s;">+</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="3" style="top:72%;left:calc(50% + 720px);font-size:0.65rem;animation-delay:0.4s;">*</span>
+    <span class="hero-deco hero-deco-wide" data-star data-ci="7" style="top:90%;left:calc(50% + 700px);font-size:0.7rem;animation-delay:0.6s;">°.</span>
         <div class="hero-top">
       <h1 class="hero-name">Hello! I'm Anna <span style="vertical-align:-0.18em;">˙ᵕ˙</span></h1>
       <p class="hero-tagline"><span class="tagline-line">Crafting clear, intuitive, and high-impact user experiences.</span><br><span class="tagline-line">Intern @ <strong>COUNTRY Financial</strong> & <strong>Yummy Future (YC S19)</strong>.</span><br>Info Sci @ <strong>UIUC</strong>. <span class="shooting-star-trigger" id="shooting-star-trigger">See shooting stars?</span></p>
@@ -1080,7 +1023,7 @@
       if (!trigger || !hero) return;
 
       const canvas = document.createElement('canvas');
-      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0;transition:opacity 0.4s;';
+      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;';
       hero.appendChild(canvas);
 
       const COLORS = ['#ffffff','#a8d5a2','#e09aa0','#88aed4','#a88ed4','#e8d4a4','#f0efe9'];
@@ -1102,15 +1045,15 @@
       function initDecoStars() {
         const darkOnlyChars = ['⊹','✦','˖','*','⋆','°.','+','⊹','✦','˖','*','⋆','°.','+','⊹','✦','˖','*'];
         const darkOnlyPositions = [
-          // inner flanking — kept clear of the text block
-          {top:'18%', left:'calc(50% - 300px)', ci:2, fs:'0.9rem'},
-          {top:'38%', left:'calc(50% - 310px)', ci:5, fs:'0.7rem'},
-          {top:'52%', left:'calc(50% - 295px)', ci:1, fs:'1rem'},
-          {top:'70%', left:'calc(50% - 315px)', ci:7, fs:'0.75rem'},
-          {top:'22%', left:'calc(50% + 285px)', ci:4, fs:'0.8rem'},
-          {top:'48%', left:'calc(50% + 295px)', ci:0, fs:'0.9rem'},
-          {top:'65%', left:'calc(50% + 280px)', ci:6, fs:'0.7rem'},
-          {top:'82%', left:'calc(50% + 300px)', ci:3, fs:'0.85rem'},
+          // inner flanking — just outside text
+          {top:'18%', left:'calc(50% - 220px)', ci:2, fs:'0.9rem'},
+          {top:'38%', left:'calc(50% - 230px)', ci:5, fs:'0.7rem'},
+          {top:'52%', left:'calc(50% - 215px)', ci:1, fs:'1rem'},
+          {top:'70%', left:'calc(50% - 235px)', ci:7, fs:'0.75rem'},
+          {top:'22%', left:'calc(50% + 200px)', ci:4, fs:'0.8rem'},
+          {top:'48%', left:'calc(50% + 210px)', ci:0, fs:'0.9rem'},
+          {top:'65%', left:'calc(50% + 195px)', ci:6, fs:'0.7rem'},
+          {top:'82%', left:'calc(50% + 215px)', ci:3, fs:'0.85rem'},
           // outer sides — filling in the wide gaps
           {top:'12%', left:'calc(50% - 470px)', ci:1, fs:'0.8rem'},
           {top:'28%', left:'calc(50% - 490px)', ci:6, fs:'1rem'},
@@ -1185,68 +1128,6 @@
           ds.el.style.opacity = shimmer;
           ds.el.style.color = DARK_STAR_COLORS[colorIdx];
         });
-      }
-
-      // Page-wide floating stars (fixed position, shown during dark mode on full page)
-      let pageStarEls = [];
-      function injectPageStars() {
-        if (pageStarEls.length > 0) return; // already injected
-        const CHARS = ['⊹','✦','˖','*','⋆','°.','+','⊹','✦','˖','*','⋆','°.','+','·','÷'];
-        // ~30 stars scattered across the full viewport height (fixed), avoid hero area (top 0-20vh)
-        const positions = [
-          // work section area
-          {top:'25vh', left:'8%',  ci:0, fs:'0.8rem', d:0.3},
-          {top:'30vh', left:'92%', ci:3, fs:'0.65rem', d:0.7},
-          {top:'35vh', left:'5%',  ci:6, fs:'0.9rem', d:0.1},
-          {top:'38vh', left:'88%', ci:1, fs:'0.7rem', d:0.5},
-          {top:'42vh', left:'12%', ci:4, fs:'0.75rem', d:0.9},
-          {top:'48vh', left:'95%', ci:7, fs:'0.6rem', d:0.2},
-          {top:'52vh', left:'3%',  ci:2, fs:'0.85rem', d:0.6},
-          {top:'55vh', left:'85%', ci:5, fs:'0.7rem', d:0.4},
-          // for fun section
-          {top:'62vh', left:'7%',  ci:3, fs:'0.75rem', d:0.8},
-          {top:'66vh', left:'90%', ci:0, fs:'0.65rem', d:0.15},
-          {top:'70vh', left:'10%', ci:6, fs:'0.9rem', d:0.55},
-          {top:'73vh', left:'93%', ci:4, fs:'0.7rem', d:0.35},
-          {top:'78vh', left:'4%',  ci:1, fs:'0.8rem', d:0.75},
-          {top:'82vh', left:'87%', ci:7, fs:'0.6rem', d:0.25},
-          // about/info section
-          {top:'88vh', left:'6%',  ci:2, fs:'0.85rem', d:0.65},
-          {top:'92vh', left:'91%', ci:5, fs:'0.7rem', d:0.45},
-          {top:'96vh', left:'9%',  ci:0, fs:'0.75rem', d:0.85},
-          {top:'100vh',left:'86%', ci:3, fs:'0.65rem', d:0.05},
-          {top:'105vh',left:'3%',  ci:6, fs:'0.9rem', d:0.55},
-          {top:'110vh',left:'94%', ci:1, fs:'0.7rem', d:0.3},
-          {top:'115vh',left:'11%', ci:4, fs:'0.8rem', d:0.7},
-          {top:'120vh',left:'89%', ci:7, fs:'0.6rem', d:0.15},
-          // deeper sections / footer area
-          {top:'130vh',left:'5%',  ci:2, fs:'0.75rem', d:0.5},
-          {top:'140vh',left:'92%', ci:5, fs:'0.85rem', d:0.9},
-          {top:'150vh',left:'7%',  ci:0, fs:'0.7rem', d:0.4},
-          {top:'160vh',left:'88%', ci:3, fs:'0.65rem', d:0.2},
-          {top:'170vh',left:'4%',  ci:6, fs:'0.8rem', d:0.6},
-          {top:'180vh',left:'95%', ci:1, fs:'0.75rem', d:0.8},
-          {top:'190vh',left:'8%',  ci:4, fs:'0.9rem', d:0.1},
-          {top:'200vh',left:'90%', ci:7, fs:'0.65rem', d:0.45},
-        ];
-        positions.forEach((p, i) => {
-          const el = document.createElement('span');
-          el.style.cssText = `position:fixed;top:${p.top};left:${p.left};font-size:${p.fs};font-family:monospace;font-weight:700;pointer-events:none;z-index:9990;opacity:0;transition:opacity 0.6s ${p.d}s;color:${DARK_STAR_COLORS[p.ci % DARK_STAR_COLORS.length]};`;
-          el.textContent = CHARS[i % CHARS.length];
-          el.dataset.pageStarIdx = i;
-          document.body.appendChild(el);
-          pageStarEls.push(el);
-          // trigger fade-in
-          requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '0.65'; }));
-        });
-      }
-
-      function removePageStars() {
-        pageStarEls.forEach(el => {
-          el.style.opacity = '0';
-          setTimeout(() => el.remove(), 600);
-        });
-        pageStarEls = [];
       }
 
       function launchStar() {
@@ -1372,7 +1253,6 @@
         exitTimer2 = null;
         darkActive = true;
         active = true;
-        canvas.style.opacity = '1';
         hero.classList.add('dark-mode');
         const heroName = hero.querySelector('.hero-name');
         if (heroName) {
@@ -1381,7 +1261,6 @@
         }
         if (trigger) trigger.textContent = 'See shooting stars!';
         if (decoStars.length === 0) initDecoStars();
-        injectPageStars();
         if (!rafId) rafId = requestAnimationFrame(drawFrame);
       }
 
@@ -1403,7 +1282,6 @@
         darkActive = false;
         active = false;
         stopShooting();
-        canvas.style.opacity = '0';
         if (trigger) trigger.textContent = 'See shooting stars?';
         // Remove dark-mode class immediately to start background fade (0.9s transition)
         hero.classList.remove('dark-mode');
@@ -1413,7 +1291,6 @@
           ds.el.style.opacity = '';
           ds.el._darkControlled = false;
         });
-        removePageStars();
         // Delay text fill restoration until background is well into its fade
         // to avoid the white-border flash from background-clip mismatch
         const heroName = hero.querySelector('.hero-name');
@@ -1459,24 +1336,6 @@
           if (!hovering) exitDark();
         }
       });
-
-      // Mobile tap: toggle dark mode on/off
-      // Use touchend (not touchstart) so it doesn't conflict with scroll, and
-      // call preventDefault to stop the subsequent synthetic click from double-toggling
-      let touchHandled = false;
-      trigger.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        touchHandled = true;
-        locked = !locked;
-        if (locked) {
-          enterDark();
-          startShooting();
-        } else {
-          stopShooting();
-          exitDark();
-        }
-        setTimeout(() => { touchHandled = false; }, 400);
-      }, { passive: false });
     })();
   </script>
 
@@ -1488,7 +1347,7 @@
 
       <!-- LEFT COL: Reforest Trees + Matcha + COUNTRY -->
       <div class="work-col">
-        <a href="reforest.html" class="work-card card-b reveal">
+        <a href="#" class="work-card card-b reveal">
           <div class="work-card-img">
             <div class="work-card-img-placeholder"></div>
           </div>
@@ -1496,7 +1355,7 @@
             <div class="work-card-left">
               <p class="work-card-title"><em>Reforest Trees—</em> Dashboards making impact visible in real time.</p>
             </div>
-            
+            <span class="work-card-arrow">↗</span>
           </div>
           <p class="work-card-tag">[Product Design, Identity, Web & Mobile]</p>
         </a>
@@ -1509,7 +1368,7 @@
             <div class="work-card-left">
               <p class="work-card-title"><em>UIUC Matcha—</em> Brewing up a local community through design!</p>
             </div>
-            
+            <span class="work-card-arrow">↗</span>
           </div>
           <p class="work-card-tag">[Graphic Design, Visual Branding]</p>
         </a>
@@ -1540,7 +1399,7 @@
             <div class="work-card-left">
               <p class="work-card-title"><em>One Degree (YC W14)—</em> Centralizing data management for 15k+ social services using AI.</p>
             </div>
-            
+            <span class="work-card-arrow">↗</span>
           </div>
           <p class="work-card-tag">[Product Design, AI, Web]</p>
         </a>
@@ -1631,14 +1490,14 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 99999;
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 0.15s ease, background 0.2s ease;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
       will-change: left, top;
     }
 
     /* Grow + turn gray on hoverable elements */
     body.cursor-hover #cursor-dot {
-      transform: translate(-50%, -50%) scale(1.75);
+      width: 14px; height: 14px;
       background: var(--ink-faint);
     }
 
@@ -1793,22 +1652,20 @@
       if (el) el.textContent = frames[fi];
     }, 600);
 
-    // Card tilt effect — applies only to the image
+    // Card tilt effect
     document.querySelectorAll('.work-card').forEach(card => {
-      const img = card.querySelector('.work-card-img');
-      if (!img) return;
       card.addEventListener('mousemove', (e) => {
-        const rect = img.getBoundingClientRect();
+        const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        img.style.transform = `translateY(-4px) perspective(1200px) rotateY(${x * 1.5}deg) rotateX(${-y * 1.5}deg)`;
+        card.style.transform = `translateY(-4px) perspective(1200px) rotateY(${x * 1.5}deg) rotateX(${-y * 1.5}deg)`;
       });
       card.addEventListener('mouseleave', () => {
-        img.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease';
-        img.style.transform = '';
+        card.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease';
+        card.style.transform = '';
       });
       card.addEventListener('mouseenter', () => {
-        img.style.transition = 'transform 0.1s ease, box-shadow 0.3s ease';
+        card.style.transition = 'transform 0.1s ease, box-shadow 0.3s ease';
       });
     });
 
