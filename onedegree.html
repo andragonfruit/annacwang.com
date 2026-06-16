@@ -698,7 +698,7 @@
       <h1 class="cs-hero-title">Designing an AI agent and dashboard for <em>One Degree</em> to keep 26,000+ resource listings up to date.</h1>
       <p class="cs-hero-sub">A dashboard where Resource Specialists and Admins run an AI agent that refreshes resource listings — then review, verify, and approve its suggestions before anything goes live.</p>
 
-      <div class="cs-hero-preview"><span>Hero — agent dashboard &amp; suggestion review</span></div>
+      <div class="cs-hero-preview"><img src="images/case-studies/1degree/first.png" alt="One Degree agent dashboard" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
 
       <div class="cs-meta">
         <div>
@@ -742,7 +742,7 @@
           </div>
         </div>
 
-        <div class="cs-img"><span>Overview — the Refresh problem at a glance</span></div>
+        <div class="cs-img"><img src="images/case-studies/1degree/Overview.png" alt="One Degree resource overview" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
 
         <h2 class="cs-headline">One Degree's listings only help people if they're up-to-date. Right now, the updating is all done manually.</h2>
         <p class="cs-body">Every year, volunteers and staff keep listings accurate through a process called <strong>Refresh</strong> — visiting each resource's website by hand and comparing every field against what One Degree has stored. Across 26,000+ resources, that doesn't scale.</p>
@@ -787,8 +787,6 @@
 
         <h3 class="cs-sub"><span class="tick">✦</span>Goal 2: Make the agent's suggestions easy to trust</h3>
         <p class="cs-body">Every suggestion carries a confidence score, source links, and a clear diff against current info — so specialists can oversee, verify, and refine each one before it ever goes live.</p>
-
-        <div class="cs-img alt-b"><span>Research — Resource Specialist vs. Admin needs</span></div>
       </section>
 
       <!-- PROCESS -->
@@ -815,17 +813,18 @@
         </div>
         <p class="cs-body">Then came the iteration. The diff view took the most tries — it had to show exactly what changed without burying specialists in detail. I kept reworking it alongside the status logs and run controls, with feedback from our PM, the devs, and the team at One Degree.</p>
 
-        <div class="cs-carousel" id="carousel">
+        <div class="cs-carousel">
           <div class="cs-carousel-frame">
-            <div class="cs-carousel-slide active"><span>Wireframes — early run &amp; review flow</span></div>
-            <div class="cs-carousel-slide"><span>Hi-fi — suggestion diff view</span></div>
+            <div class="cs-carousel-slide active"><img src="images/case-studies/1degree/process1.png" alt="Wireframe — run flow" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="cs-carousel-slide"><img src="images/case-studies/1degree/process2.png" alt="Wireframe — review flow" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="cs-carousel-slide"><img src="images/case-studies/1degree/process3.png" alt="Wireframe — run history" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <div class="cs-carousel-bar">
             <div class="cs-carousel-nav">
-              <button type="button" id="car-prev">← Prev</button>
-              <button type="button" id="car-next">Next →</button>
+              <button type="button" class="cs-car-prev">← Prev</button>
+              <button type="button" class="cs-car-next">Next →</button>
             </div>
-            <span class="cs-carousel-count" id="car-count">1 of 2</span>
+            <span class="cs-carousel-count">1 of 3</span>
           </div>
         </div>
       </section>
@@ -835,17 +834,29 @@
         <p class="cs-eyebrow">Solution</p>
         <h2 class="cs-headline">What we built</h2>
 
+        <h3 class="cs-sub"><span class="tick">✦</span>Seeing every past run</h3>
+        <p class="cs-body">A full history of the agent's runs — when each one ran, how long it took, its logs, and the suggestions it produced. Specialists can open any past run instead of starting from scratch.</p>
+        <div class="cs-img sol-img"><img src="images/case-studies/1degree/dash.png" alt="Run history dashboard" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
         <h3 class="cs-sub"><span class="tick">✦</span>Starting a run, and watching it go</h3>
         <p class="cs-body">Specialists start the agent on a set of resources and watch it run live — log output, current resource, and how long the run has been going, since a full Refresh takes a while.</p>
-        <div class="cs-img sol-img"><span>Run &amp; status — live agent logs</span></div>
+        <div class="cs-img alt-a sol-img"><img src="images/case-studies/1degree/run-overview1.png" alt="Run status and live logs" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
 
         <h3 class="cs-sub"><span class="tick">✦</span>Reviewing what the agent suggests</h3>
         <p class="cs-body">Each suggestion shows a <strong>diff against current info</strong>, a confidence score, and <strong>source links</strong> for where the agent found each field. Specialists edit, then approve — and approvals push to the live platform.</p>
-        <div class="cs-img alt-a sol-img"><span>Suggestion review — diff, confidence, sources</span></div>
-
-        <h3 class="cs-sub"><span class="tick">✦</span>Admin controls for what the agent touches</h3>
-        <p class="cs-body">Admins configure which resource IDs and which data fields the agent updates, and oversee which specialist ran what — the guardrails around the whole process.</p>
-        <div class="cs-img alt-b sol-img"><span>Admin dashboard — run &amp; field config</span></div>
+        <div class="cs-carousel sol-img">
+          <div class="cs-carousel-frame">
+            <div class="cs-carousel-slide active"><img src="images/case-studies/1degree/run-overview2.png" alt="Suggestion review — diff and confidence" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="cs-carousel-slide"><img src="images/case-studies/1degree/suggestions.png" alt="Suggestion review — source links" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          </div>
+          <div class="cs-carousel-bar">
+            <div class="cs-carousel-nav">
+              <button type="button" class="cs-car-prev">← Prev</button>
+              <button type="button" class="cs-car-next">Next →</button>
+            </div>
+            <span class="cs-carousel-count">1 of 2</span>
+          </div>
+        </div>
       </section>
 
       <!-- CONCLUSION -->
@@ -1013,25 +1024,24 @@
     window.addEventListener('scroll', updateToc, { passive: true });
     updateToc();
 
-    // ── Iteration carousel ──
-    const slides = document.querySelectorAll('.cs-carousel-slide');
-    const notes = ['', ''];
-    let cur = 0;
-    const countEl = document.getElementById('car-count');
-    const noteEl = document.getElementById('car-note');
-    function showSlide(i) {
-      cur = Math.max(0, Math.min(i, slides.length - 1));
-      slides.forEach((s, idx) => s.classList.toggle('active', idx === cur));
-      countEl.textContent = (cur + 1) + ' of ' + slides.length;
-      if (noteEl) noteEl.innerHTML = notes[cur];
-      const prevBtn = document.getElementById('car-prev');
-      const nextBtn = document.getElementById('car-next');
-      prevBtn.disabled = cur === 0;
-      nextBtn.disabled = cur === slides.length - 1;
-    }
-    document.getElementById('car-prev').addEventListener('click', () => showSlide(cur - 1));
-    document.getElementById('car-next').addEventListener('click', () => showSlide(cur + 1));
-    showSlide(0);
+    // ── Carousels (independent) ──
+    document.querySelectorAll('.cs-carousel').forEach(car => {
+      const slides = car.querySelectorAll('.cs-carousel-slide');
+      const countEl = car.querySelector('.cs-carousel-count');
+      const prevBtn = car.querySelector('.cs-car-prev');
+      const nextBtn = car.querySelector('.cs-car-next');
+      let cur = 0;
+      function show(i) {
+        cur = Math.max(0, Math.min(i, slides.length - 1));
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === cur));
+        if (countEl) countEl.textContent = (cur + 1) + ' of ' + slides.length;
+        if (prevBtn) prevBtn.disabled = cur === 0;
+        if (nextBtn) nextBtn.disabled = cur === slides.length - 1;
+      }
+      if (prevBtn) prevBtn.addEventListener('click', () => show(cur - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => show(cur + 1));
+      show(0);
+    });
 
     // ── Eating animation ──
     const frames = ['(๑ᵔ⤙ᵔ๑)', '(๑ᵔoᵔ๑)'];
