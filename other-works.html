@@ -51,6 +51,23 @@
       font-weight: normal;
       color: var(--ink);
       text-decoration: none;
+      transition: color 0.9s ease;
+    }
+    .nav-name:hover {
+      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(90deg,
+        #4a8a52, #c45a6a, #4a7ab8, #7a4ab8, #b87a20,
+        #4a7ab8, #c45a6a, #4a8a52, #7a4ab8, #b87a20, #4a8a52
+      );
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: aura-sweep 8s linear infinite;
+    }
+
+    @keyframes aura-sweep {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
 
     /* ── CONTENT ── */
@@ -158,6 +175,15 @@
       font-weight: normal;
       font-style: normal;
     }
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.75rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+    }
   </style>
 </head>
 <body>
@@ -219,19 +245,19 @@
 
       <div class="ow-piece reveal">
         <div class="ow-frame" style="aspect-ratio: 4/5;">
-          <img src="images/other-works/placeholder-10.png" alt="Placeholder piece 10">
+          <img src="images/other-works/north-shore.JPG" alt="North Shore">
         </div>
         <p class="ow-cap">
-          <span class="ow-cap-text"><strong>Title Ten</strong>—One-line description of the piece.</span>
+          <span class="ow-cap-text"><strong>North Shore</strong>—Taken on Olympus E-PL6.</span>
         </p>
       </div>
 
       <div class="ow-piece reveal">
         <div class="ow-frame" style="aspect-ratio: 4/5;">
-          <img src="images/other-works/north-shore.jpg" alt="North Shore">
+          <img src="images/other-works/placeholder-10.png" alt="Placeholder piece 10">
         </div>
         <p class="ow-cap">
-          <span class="ow-cap-text"><strong>North Shore</strong>—Taken on Olympus E-PL6.</span>
+          <span class="ow-cap-text"><strong>Title Ten</strong>—One-line description of the piece.</span>
         </p>
       </div>
 
@@ -274,12 +300,144 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Anna Wang</span>
+    <span>Vibe coded with Claude & some snacks <span id="nom" style="display:inline-block;width:6ch;text-align:left;">( ๑ᵔ⤙ᵔ๑)</span></span>
+  </footer>
+
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     reveals.forEach(el => io.observe(el));
+
+    // Eating animation
+    const frames = ['(๑ᵔ⤙ᵔ๑)', '(๑ᵔoᵔ๑)'];
+    let fi = 0;
+    setInterval(() => {
+      fi = (fi + 1) % frames.length;
+      const el = document.getElementById('nom');
+      if (el) el.textContent = frames[fi];
+    }, 600);
+  </script>
+
+  <!-- CURSOR DOT + SPARKLES -->
+  <style>
+    /* Hide native cursor only on pointer devices */
+    @media (hover: hover) and (pointer: fine) {
+      *, *::before, *::after { cursor: none !important; }
+    }
+
+    /* The dot */
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--ink);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0.15s ease, background 0.2s ease;
+      will-change: left, top;
+    }
+
+    /* Grow + turn gray on hoverable elements */
+    body.cursor-hover #cursor-dot {
+      transform: translate(-50%, -50%) scale(1.75);
+      background: var(--ink-faint);
+    }
+
+    /* No dot on touch devices */
+    @media (hover: none), (pointer: coarse) {
+      #cursor-dot { display: none !important; }
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 1rem;
+      line-height: 1;
+      animation: sparkle-fade 0.8s ease forwards;
+      transform-origin: center;
+      user-select: none;
+    }
+    @keyframes sparkle-fade {
+      0%   { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3) rotate(var(--rot)); }
+    }
+  </style>
+  <div id="cursor-dot"></div>
+  <script>
+    const dot = document.getElementById('cursor-dot');
+
+    // Move the dot
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top  = e.clientY + 'px';
+    });
+
+    // Show/hide dot when leaving/entering window
+    document.addEventListener('mouseleave', () => dot.style.opacity = '0');
+    document.addEventListener('mouseenter', () => dot.style.opacity = '1');
+
+    // Grow on interactive elements
+    const hoverTargets = 'a, button, [role="button"], .work-card, .shooting-star-trigger, label, input, select, textarea';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+    });
+
+    const SPARKLE_CHARS = ['. ݁₊', '⊹', '. ݁˖', '. ݁', '✦', '˖', '⋆', '₊'];
+    const SPARKLE_COLORS = [
+      '#a8d5a2', '#b5e0b0', '#c8edc4',  // greens
+      '#e8b4b8', '#f4c7ca',              // pinks
+      '#b4c8e8', '#c7d9f4',              // blues
+      '#e8d4b4', '#f4e4c7',              // warm yellows
+      '#c8b4e8', '#d9c7f4',              // purples
+    ];
+
+    let lastSparkle = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      if (now - lastSparkle < 40) return;
+      lastSparkle = now;
+      spawnSparkle(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      const now = Date.now();
+      if (now - lastSparkle < 40) return;
+      lastSparkle = now;
+      const touch = e.touches[0];
+      spawnSparkle(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      for (let i = 0; i < 4; i++) spawnSparkle(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    function spawnSparkle(x, y) {
+      const el = document.createElement('span');
+      el.className = 'sparkle';
+      el.textContent = SPARKLE_CHARS[Math.floor(Math.random() * SPARKLE_CHARS.length)];
+      el.style.color = SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)];
+      el.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
+      el.style.top  = (y + (Math.random() - 0.5) * 20) + 'px';
+      el.style.fontSize = (Math.random() * 0.6 + 0.7) + 'rem';
+      el.style.setProperty('--dx', (Math.random() - 0.5) * 40 + 'px');
+      el.style.setProperty('--dy', -(Math.random() * 40 + 10) + 'px');
+      el.style.setProperty('--rot', (Math.random() * 60 - 30) + 'deg');
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 800);
+    }
   </script>
 
 </body>
